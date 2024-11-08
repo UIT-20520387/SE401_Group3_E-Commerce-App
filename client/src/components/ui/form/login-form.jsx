@@ -20,7 +20,7 @@ export default function LoginForm({ formData, onFormChange, onSubmit }) {
                 placeholder={field.placeholder}
                 id={field.name}
                 type={field.type}
-                value={value}
+                defaultValue={value}
                 onChange={handleInputChange(field.name)}
               />
             </div>

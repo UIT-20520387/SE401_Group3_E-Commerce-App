@@ -27,6 +27,7 @@ export default function AuthRegister() {
     (formData) => setFormData(formData),
     500
   );
+
   return (
     <div className="mx-auto w-full max-w-md">
       <div className="text-center space-y-6">

@@ -34,6 +34,15 @@ export default [
         { allowConstantExport: true },
       ],
       "react/prop-types": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          vars: "all",
+          args: "after-used",
+          ignoreRestSiblings: true,
+          varsIgnorePattern: "^use",
+        },
+      ],
     },
   },
 ];

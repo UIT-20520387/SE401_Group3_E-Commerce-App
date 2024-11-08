@@ -26,7 +26,6 @@ export default function AuthLogin() {
     (formData) => setFormData(formData),
     500
   );
-
   return (
     <div className="mx-auto w-full max-w-md">
       <div className="text-center space-y-10">

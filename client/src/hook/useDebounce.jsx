@@ -5,7 +5,7 @@ export function useDebouce(value, delay) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(value);
-    }, delay || 200);
+    }, delay || 100);
 
     return () => {
       clearTimeout(timer);
@@ -21,7 +21,7 @@ export function useDebounceFunction(callback, delay) {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         callback(...args);
-      }, delay || 200);
+      }, delay || 100);
     },
     [callback, delay]
   );
