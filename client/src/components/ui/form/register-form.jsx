@@ -1,16 +1,16 @@
-import { loginFormControls } from "@/config/form-control";
-import { Input } from "../input";
-import { Button } from "../button";
+import { registerFormControls } from "@/config/form-control";
 import { Link } from "react-router-dom";
+import { Button } from "../button";
+import { Input } from "../input";
 
-export default function LoginForm({ formData, onFormChange, onSubmit }) {
+export default function RegisterForm({ formData, onFormChange, onSubmit }) {
   const handleInputChange = (name) => (event) => {
     onFormChange({ ...formData, [name]: event.target.value });
   };
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3 text-start">
-        {loginFormControls.map((field) => {
+        {registerFormControls.map((field) => {
           const value = formData[field.name];
           return (
             <div className="grid w-full gap-1.5" key={field.name}>
@@ -28,15 +28,15 @@ export default function LoginForm({ formData, onFormChange, onSubmit }) {
         })}
       </div>
       <Button type="submit" className="mt-2 w-full">
-        Sign In
+        Register
       </Button>
       <p className="mt-2">
-        {"Don't have an account"}
+        Already have an account
         <Link
           className="font-medium ml-2 text-primary hover:underline"
-          to="/auth/register"
+          to="/auth/login"
         >
-          Register
+          Login
         </Link>
       </p>
     </form>

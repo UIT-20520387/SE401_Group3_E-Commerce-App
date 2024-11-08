@@ -1,4 +1,4 @@
-import LoginForm from "@/components/ui/form/login-form";
+import RegisterForm from "@/components/ui/form/register-form";
 import { useDebounceFunction } from "@/hook/useDebounce";
 import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
@@ -6,10 +6,11 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const initialState = {
+  userName: "",
   email: "",
   password: "",
 };
-export default function AuthLogin() {
+export default function AuthRegister() {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
 
@@ -26,14 +27,13 @@ export default function AuthLogin() {
     (formData) => setFormData(formData),
     500
   );
-
   return (
     <div className="mx-auto w-full max-w-md">
-      <div className="text-center space-y-10">
+      <div className="text-center space-y-6">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Sign in to your account
+          Create new account
         </h1>
-        <LoginForm
+        <RegisterForm
           formData={formData}
           onFormChange={handleFormChange}
           onSubmit={onSubmit}

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
+import AuthRegister from "./pages/auth/register";
 
 function App() {
   // const { user, isLoading } = useSelector((state) => state.auth);
@@ -36,7 +37,7 @@ function App() {
           }
         >
           <Route path="login" element={<AuthLogin />} />
-          {/* <Route path="register" element={<AuthRegister />} /> */}
+          <Route path="register" element={<AuthRegister />} />
         </Route>
         {/* <Route
           path="/admin"
