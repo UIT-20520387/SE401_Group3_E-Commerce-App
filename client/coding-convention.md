@@ -1,9 +1,9 @@
 ### 1. File Naming
 
-- Sử dụng PascalCase cho tên file chứa components.
-  **Ví dụ:** UserProfile.jsx
-- Các file không phải component như helpers, lib dùng camelCase.
-  **Ví dụ:** dateHelper.jsx.
+- Sử dụng PascalCase cho tên tất cả components.
+  **Ví dụ:** <UserProfile />
+- Dùng snake-case cho tên toàn bộ thư mục và file.
+  **Ví dụ:** user-profile.jsx.
 
 ### 2. Varibles Naming Conventions
 
@@ -41,4 +41,22 @@ const handleIncrease = () => setCount(count + 1);
 {
   isLoading ? <Spinner /> : <Content />;
 }
+```
+
+- API URL Conventions
+
+```jsx
+// Thay vì đặt method ở cuối url
+"http://localhost:5000/api/admin/products/get";
+"http://localhost:5000/api/admin/products/post";
+"http://localhost:5000/api/admin/products/put";
+"http://localhost:5000/api/admin/products/delete";
+```
+
+```jsx
+// Nên đặt url thế này rồi thay đổi method của axios
+axios.get("http://localhost:5000/api/admin/products");
+axios.post("http://localhost:5000/api/admin/products");
+axios.put("http://localhost:5000/api/admin/products");
+axios.delete("http://localhost:5000/api/admin/products");
 ```
