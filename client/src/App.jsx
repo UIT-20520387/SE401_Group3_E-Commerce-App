@@ -6,6 +6,7 @@ import NotFound from "./pages/not-found";
 import UnauthPage from "./pages/unauth-page";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminLayout from "./components/admin-view/layout";
+import AdminProducts from "./pages/admin-view/products";
 
 function App() {
   // const { user, isLoading } = useSelector((state) => state.auth);
@@ -53,8 +54,8 @@ function App() {
           }
         >
           <Route path="dashboard" element={<AdminDashboard />} />
-          {/* <Route path="products" element={<AdminProducts />} />
-          <Route path="orders" element={<AdminOrders />} />
+          <Route path="products" element={<AdminProducts />} />
+          {/* <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} /> */}
         </Route>
         {/* <Route

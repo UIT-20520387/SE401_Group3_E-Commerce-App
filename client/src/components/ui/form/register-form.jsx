@@ -1,11 +1,11 @@
 import { registerFormControls } from "@/config/form-control";
 import { Link } from "react-router-dom";
 import { Button } from "../button";
-import { Input } from "../input";
+import InputForm from "./utils/input-form";
 
 export default function RegisterForm({ formData, onFormChange, onSubmit }) {
-  const handleInputChange = (name) => (event) => {
-    onFormChange({ ...formData, [name]: event.target.value });
+  const handleInputChange = (name) => (value) => {
+    onFormChange({ ...formData, [name]: value });
   };
   return (
     <form onSubmit={onSubmit}>
@@ -13,17 +13,12 @@ export default function RegisterForm({ formData, onFormChange, onSubmit }) {
         {registerFormControls.map((field) => {
           const value = formData[field.name];
           return (
-            <div className="grid w-full gap-1.5" key={field.name}>
-              <label className="mb-1">{field.label}</label>
-              <Input
-                name={field.name}
-                placeholder={field.placeholder}
-                id={field.name}
-                type={field.type}
-                defaultValue={value}
-                onChange={handleInputChange(field.name)}
-              />
-            </div>
+            <InputForm
+              key={field.name}
+              field={field}
+              defaultValue={value}
+              onChange={handleInputChange(field.name)}
+            />
           );
         })}
       </div>
