@@ -39,7 +39,7 @@ export const loginFormControls = [
   },
 ];
 
-export const addProductFormElements = [
+export const addProductForm = [
   {
     label: "Title",
     name: "title",

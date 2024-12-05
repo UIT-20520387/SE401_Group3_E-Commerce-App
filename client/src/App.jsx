@@ -2,6 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
+import NotFound from "./pages/not-found";
+import UnauthPage from "./pages/unauth-page";
+import AdminDashboard from "./pages/admin-view/dashboard";
+import AdminLayout from "./components/admin-view/layout";
+import AdminProducts from "./pages/admin-view/products";
 
 function App() {
   // const { user, isLoading } = useSelector((state) => state.auth);
@@ -39,20 +44,21 @@ function App() {
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
         </Route>
-        {/* <Route
+        <Route
           path="/admin"
           element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AdminLayout />
-            </CheckAuth>
+            // <AuthProtect isAuthenticated={isAuthenticated} user={user}>
+            //   <AdminLayout />
+            // </AuthProtect>
+            <AdminLayout />
           }
         >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="features" element={<AdminFeatures />} />
+          {/* <Route path="orders" element={<AdminOrders />} />
+          <Route path="features" element={<AdminFeatures />} /> */}
         </Route>
-        <Route
+        {/* <Route
           path="/shop"
           element={
             <CheckAuth isAuthenticated={isAuthenticated} user={user}>
@@ -67,9 +73,9 @@ function App() {
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
-        </Route>
+        </Route> */}
         <Route path="/unauth-page" element={<UnauthPage />} />
-        <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
