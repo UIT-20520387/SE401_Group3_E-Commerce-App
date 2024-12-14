@@ -7,6 +7,8 @@ import UnauthPage from "./pages/unauth-page";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminLayout from "./components/admin-view/layout";
 import AdminProducts from "./pages/admin-view/products";
+import ShoppingLayout from "./components/shopping-view/layout";
+import ShoppingHome from "./pages/shopping-view/home";
 
 function App() {
   // const { user, isLoading } = useSelector((state) => state.auth);
@@ -58,22 +60,23 @@ function App() {
           {/* <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} /> */}
         </Route>
-        {/* <Route
+        <Route
           path="/shop"
           element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <ShoppingLayout />
-            </CheckAuth>
+            // <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            //   <ShoppingLayout />
+            // </CheckAuth>
+            <ShoppingLayout />
           }
         >
           <Route path="home" element={<ShoppingHome />} />
-          <Route path="listing" element={<ShoppingListing />} />
+          {/* <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
-          <Route path="search" element={<SearchProducts />} />
-        </Route> */}
+          <Route path="search" element={<SearchProducts />} /> */}
+        </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
