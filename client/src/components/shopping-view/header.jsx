@@ -48,6 +48,7 @@ function MenuItems() {
         )
       : navigate(getCurrentMenuItem.path);
   }
+  console.log("search params", searchParams);
 
   return (
     <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
@@ -134,6 +135,7 @@ function HeaderRightContent() {
 
 function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  console.log(isAuthenticated, "isAuthenticated");
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
