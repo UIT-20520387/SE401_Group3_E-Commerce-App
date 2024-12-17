@@ -10,6 +10,7 @@ import AdminProducts from "./pages/admin-view/products";
 import ShoppingLayout from "./components/shopping-view/layout";
 import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingAccount from "./pages/shopping-view/account";
+import SearchProducts from "./pages/shopping-view/search";
 
 function App() {
   // const { user, isLoading } = useSelector((state) => state.auth);
@@ -72,11 +73,11 @@ function App() {
         >
           <Route path="home" element={<ShoppingHome />} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="search" element={<SearchProducts />} />
           {/* <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="paypal-return" element={<PaypalReturnPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage />} />
-          <Route path="search" element={<SearchProducts />} /> */}
+          <Route path="payment-success" element={<PaymentSuccessPage />} /> */}
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
