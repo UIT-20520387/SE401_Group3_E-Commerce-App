@@ -35,30 +35,32 @@ const addProduct = async (req, res) => {
       averageReview,
     } = req.body;
 
-    console.log(averageReview, "averageReview");
+    // Xây dựng sản phẩm mới bằng ProductBuilder
+    const newProductData = new ProductBuilder()
+      .setImage(image)
+      .setTitle(title)
+      .setDescription(description)
+      .setCategory(category)
+      .setBrand(brand)
+      .setPrice(price)
+      .setSalePrice(salePrice)
+      .setTotalStock(totalStock)
+      .setAverageReview(averageReview)
+      .build();
 
-    const newlyCreatedProduct = new Product({
-      image,
-      title,
-      description,
-      category,
-      brand,
-      price,
-      salePrice,
-      totalStock,
-      averageReview,
-    });
-
+    // Tạo và lưu sản phẩm mới
+    const newlyCreatedProduct = new Product(newProductData);
     await newlyCreatedProduct.save();
+
     res.status(201).json({
       success: true,
       data: newlyCreatedProduct,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({
       success: false,
-      message: "Error occured",
+      message: "An error occurred",
     });
   }
 };
