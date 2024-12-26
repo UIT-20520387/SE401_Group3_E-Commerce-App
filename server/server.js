@@ -1,7 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const mongooseSingleton = require("./helpers/mongooseSingleton");
+
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -14,11 +15,6 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
-
-mongoose
-  .connect("mongodb://localhost:27017/ecommerce")
-  .then(() => console.log("MongoDB connected"))
-  .catch((error) => console.log(error));
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -53,4 +49,14 @@ app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
-app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
+async () => {
+  try {
+    await mongooseSingleton.getConnection(); // Đảm bảo kết nối MongoDB sẵn sàng
+    app.listen(PORT, () =>
+      console.log(`Server is now running on port ${PORT}`)
+    );
+  } catch (e) {
+    console.error("Failed to start the server:", error);
+    process.exit(1);
+  }
+};
