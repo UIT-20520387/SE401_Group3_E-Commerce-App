@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
 
 class MongooseSingleton {
+  static instance = null;
+  static connection = null;
+
   constructor() {
     if (!MongooseSingleton.instance) {
-      this._connect();
       MongooseSingleton.instance = this;
+      this._connect();
     }
     return MongooseSingleton.instance;
   }
 
   async _connect() {
     try {
-      this.connection = await mongoose.connect(
+      MongooseSingleton.connection = await mongoose.connect(
         "mongodb://localhost:27017/ecommerce",
         {
           useNewUrlParser: true,
@@ -26,10 +29,8 @@ class MongooseSingleton {
   }
 
   getConnection() {
-    return this.connection;
+    return MongooseSingleton.connection;
   }
 }
 
-const instance = new MongooseSingleton();
-Object.freeze(instance);
-module.exports = instance;
+module.exports = new MongooseSingleton();
