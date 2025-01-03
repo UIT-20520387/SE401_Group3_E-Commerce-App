@@ -1,12 +1,10 @@
 import Address from "@/components/shopping-view/address";
-import img from "../../assets/account.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-import { Navigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "react-toastify";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
@@ -15,7 +13,6 @@ function ShoppingCheckout() {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
-  const { toast } = useToast();
 
   console.log(currentSelectedAddress, "cartItems");
 
@@ -34,19 +31,12 @@ function ShoppingCheckout() {
 
   function handleInitiatePaypalPayment() {
     if (cartItems.length === 0) {
-      toast({
-        title: "Your cart is empty. Please add items to proceed",
-        variant: "destructive",
-      });
+      toast.error("Your cart is empty. Please add items to proceed");
 
       return;
     }
     if (currentSelectedAddress === null) {
-      toast({
-        title: "Please select one address to proceed.",
-        variant: "destructive",
-      });
-
+      toast.error("Please select one address to proceed.");
       return;
     }
 
@@ -98,7 +88,10 @@ function ShoppingCheckout() {
   return (
     <div className="flex flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
-        <img src={img} className="h-full w-full object-cover object-center" />
+        <img
+          src={"/assets/account.jpg"}
+          className="h-full w-full object-cover object-center"
+        />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 p-5">
         <Address
@@ -108,7 +101,7 @@ function ShoppingCheckout() {
         <div className="flex flex-col gap-4">
           {cartItems && cartItems.items && cartItems.items.length > 0
             ? cartItems.items.map((item) => (
-                <UserCartItemsContent cartItem={item} />
+                <UserCartItemsContent key={item._id} cartItem={item} />
               ))
             : null}
           <div className="mt-8 space-y-4">
