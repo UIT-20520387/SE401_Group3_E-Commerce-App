@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+require('dotenv').config();
 const mongooseSingleton = require("./helpers/mongooseSingleton");
 
 const authRouter = require("./routes/auth/auth-routes");
@@ -49,14 +50,11 @@ app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
-async () => {
-  try {
-    await mongooseSingleton.getConnection(); // Đảm bảo kết nối MongoDB sẵn sàng
-    app.listen(PORT, () =>
-      console.log(`Server is now running on port ${PORT}`)
-    );
-  } catch (e) {
-    console.error("Failed to start the server:", error);
-    process.exit(1);
-  }
-};
+// if (mongooseSingleton.getConnection() == undefined || mongooseSingleton.getConnection() == null) {
+//     console.log("mongoose singleton connection failed");
+//     process.exit(1);
+// }
+    
+app.listen(PORT, () =>
+    console.log(`Server is now running on port ${PORT}`)
+);
