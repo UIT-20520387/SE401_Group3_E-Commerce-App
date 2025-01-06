@@ -48,9 +48,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             dispatch(fetchAllAddresses(user?.id));
             setCurrentEditedId(null);
             setFormData(initialAddressFormData);
-            toast({
-              title: "Address updated successfully",
-            });
+            toast.success("Address updated successfully");
           }
         })
       : dispatch(
@@ -62,9 +60,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           if (data?.payload?.success) {
             dispatch(fetchAllAddresses(user?.id));
             setFormData(initialAddressFormData);
-            toast({
-              title: "Address added successfully",
-            });
+            toast.success("Address added successfully");
           }
         });
   }
@@ -75,9 +71,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     ).then((data) => {
       if (data?.payload?.success) {
         dispatch(fetchAllAddresses(user?.id));
-        toast({
-          title: "Address deleted successfully",
-        });
+        toast.success("Address deleted successfully");
       }
     });
   }
