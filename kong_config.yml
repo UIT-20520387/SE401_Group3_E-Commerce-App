@@ -1,0 +1,83 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+  - name: auth-service
+    url: http://server:5000/auth
+    routes:
+      - name: auth-route
+        paths:
+          - /api/auth
+        strip_path: true
+
+  - name: admin-products-service
+    url: http://server:5000/admin/products
+    routes:
+      - name: admin-products-route
+        paths:
+          - /api/admin/products
+        strip_path: true
+
+  - name: admin-orders-service
+    url: http://server:5000/admin/orders
+    routes:
+      - name: admin-orders-route
+        paths:
+          - /api/admin/orders
+        strip_path: true
+
+  - name: shop-products-service
+    url: http://server:5000/shop/products
+    routes:
+      - name: shop-products-route
+        paths:
+          - /api/shop/products
+        strip_path: true
+
+  - name: shop-cart-service
+    url: http://server:5000/shop/cart
+    routes:
+      - name: shop-cart-route
+        paths:
+          - /api/shop/cart
+        strip_path: true
+
+  - name: shop-address-service
+    url: http://server:5000/shop/address
+    routes:
+      - name: shop-address-route
+        paths:
+          - /api/shop/address
+        strip_path: true
+
+  - name: shop-order-service
+    url: http://server:5000/shop/order
+    routes:
+      - name: shop-order-route
+        paths:
+          - /api/shop/order
+        strip_path: true
+
+  - name: shop-search-service
+    url: http://server:5000/shop/search
+    routes:
+      - name: shop-search-route
+        paths:
+          - /api/shop/search
+        strip_path: true
+
+  - name: shop-review-service
+    url: http://server:5000/shop/review
+    routes:
+      - name: shop-review-route
+        paths:
+          - /api/shop/review
+        strip_path: true
+
+  - name: common-feature-service
+    url: http://server:5000/common/feature
+    routes:
+      - name: common-feature-route
+        paths:
+          - /api/common/feature
+        strip_path: true

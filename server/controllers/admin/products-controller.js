@@ -1,6 +1,6 @@
 const S3Adapter = require("../../helpers/adapter/s3");
 const CloudinaryAdapter = require("../../helpers/adapter/cloudinary");
-const Product = require("../../models/Product");
+const { Product, ProductBuilder } = require("../../models/Product");
 const UploadStrategy = require("../../helpers/strategy/upload-strategy");
 
 const uploadStrategy = new UploadStrategy();
@@ -13,7 +13,7 @@ const handleImageUpload = async (req, res) => {
                 message: "No file uploaded",
             });
         }
-        
+
         const adapterType = req.query.adapter || (Math.random() < 0.5 ? "s3" : "cloudinary");
 
         if (adapterType === "s3") {
@@ -59,7 +59,7 @@ const addProduct = async (req, res) => {
         } = req.body;
 
         // Xây dựng sản phẩm mới bằng ProductBuilder
-        const newProductData = new ProductBuilder()
+        const newProduct = new ProductBuilder()
             .setImage(image)
             .setTitle(title)
             .setDescription(description)
@@ -72,8 +72,7 @@ const addProduct = async (req, res) => {
             .build();
 
         // Tạo và lưu sản phẩm mới
-        const newlyCreatedProduct = new Product(newProductData);
-        await newlyCreatedProduct.save();
+        await newProduct.save();
 
         res.status(201).json({
             success: true,

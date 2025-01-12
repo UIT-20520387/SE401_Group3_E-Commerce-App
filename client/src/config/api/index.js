@@ -1,4 +1,4 @@
-export const HOST = "http://localhost:5000";
+export const HOST = "http://localhost:8000";
 export * from "./auth";
 export * from "./admin";
 // export * from "./feature";

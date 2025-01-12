@@ -15,10 +15,11 @@ class MongooseSingleton {
   async _connect() {
     try {
       MongooseSingleton.connection = await mongoose.connect(
-        "mongodb://localhost:27017/ecommerce",
+        "mongodb://mongodb:mongodb@mongo:27017/ecommerce",
         {
           useNewUrlParser: true,
           useUnifiedTopology: true,
+          authSource: "admin", // Ensure admin is used for authentication
         }
       );
       console.log("MongoDB connected");
