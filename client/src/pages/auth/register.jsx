@@ -1,6 +1,6 @@
 import RegisterForm from "@/components/ui/form/register-form";
 import { useDebounceFunction } from "@/hook/useDebounce";
-import { loginUser } from "@/store/auth-slice";
+import { loginUser, registerUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ export default function AuthRegister() {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(loginUser(formData)).then((data) => {
+    dispatch(registerUser(formData)).then((data) => {
       if (data?.payload?.success) toast.success(data?.payload?.message);
       else toast.error(data?.payload?.message);
     });
