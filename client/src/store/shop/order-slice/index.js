@@ -2,7 +2,8 @@ import {
   getShopOrderApi,
   getShopOrderByUserApi,
   getShopOrderCapturePaymentApi,
-} from "@/config/api/shop";
+  getShopOrderDetailApi,
+} from "@/config/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -17,7 +18,7 @@ const initialState = {
 export const createNewOrder = createAsyncThunk(
   "/order/createNewOrder",
   async (orderData) => {
-    const url = getShopOrderApi();
+    const url = getShopOrderApi("create");
     const response = await axios.post(url, orderData);
 
     return response.data;
@@ -51,7 +52,7 @@ export const getAllOrdersByUserId = createAsyncThunk(
 export const getOrderDetails = createAsyncThunk(
   "/order/getOrderDetails",
   async (id) => {
-    const url = getShopOrderApi(id);
+    const url = getShopOrderDetailApi(id);
     const response = await axios.get(url);
 
     return response.data;

@@ -1,7 +1,9 @@
 import { HOST } from "../..";
 
-export const getShopOrderApi = (id) => {
-  return `${HOST}/api/shop/order` + (id ? `/${id}` : "");
+export const getShopOrderApi = (id, type) => {
+  return (
+    `${HOST}/api/shop/order` + (type ? `/${type}` : "") + (id ? `/${id}` : "")
+  );
 };
 
 export const getShopOrderCapturePaymentApi = () => {
@@ -9,5 +11,9 @@ export const getShopOrderCapturePaymentApi = () => {
 };
 
 export const getShopOrderByUserApi = (userId) => {
-  return `${HOST}/api/shop/order/user/${userId}`;
+  return `${HOST}/api/shop/order/list/${userId}`;
+};
+
+export const getShopOrderDetailApi = (orderId) => {
+  return `${HOST}/api/shop/order/details/${orderId}`;
 };
