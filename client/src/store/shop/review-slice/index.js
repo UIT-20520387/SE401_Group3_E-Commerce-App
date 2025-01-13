@@ -1,4 +1,4 @@
-import { getShopReviewApi } from "@/config/api/shop";
+import { getShopReviewApi } from "@/config/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const initialState = {
 export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
-    const url = getShopReviewApi();
+    const url = getShopReviewApi("add");
     const response = await axios.post(url, formdata);
 
     return response.data;

@@ -1,5 +1,5 @@
 import { HOST } from "..";
 
-export const getFeatureApi = () => {
-  return `${HOST}/api/feature`;
+export const getFeatureApi = (type = "get") => {
+  return `${HOST}/api/common/feature/` + type;
 };

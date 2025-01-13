@@ -10,7 +10,7 @@ const initialState = {
 export const getFeatureImages = createAsyncThunk(
   "/order/getFeatureImages",
   async () => {
-    const url = getFeatureApi();
+    const url = getFeatureApi("get");
     const response = await axios.get(url);
 
     return response.data;
@@ -20,7 +20,7 @@ export const getFeatureImages = createAsyncThunk(
 export const addFeatureImage = createAsyncThunk(
   "/order/addFeatureImage",
   async (image) => {
-    const url = getFeatureApi();
+    const url = getFeatureApi("add");
     const response = await axios.post(url, { image });
 
     return response.data;

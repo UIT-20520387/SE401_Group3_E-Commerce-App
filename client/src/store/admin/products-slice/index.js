@@ -10,7 +10,7 @@ const initialState = {
 export const addNewProduct = createAsyncThunk(
   "/products/addnewproduct",
   async (formData) => {
-    const url = getAdminProductApi();
+    const url = getAdminProductApi(null, "add");
     const result = await axios.post(url, formData, {
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const addNewProduct = createAsyncThunk(
 export const fetchAllProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async () => {
-    const url = getAdminProductApi();
+    const url = getAdminProductApi(null, "get");
     const result = await axios.get(url);
 
     return result?.data;
@@ -34,7 +34,7 @@ export const fetchAllProducts = createAsyncThunk(
 export const editProduct = createAsyncThunk(
   "/products/editProduct",
   async ({ id, formData }) => {
-    const url = getAdminProductApi(id);
+    const url = getAdminProductApi(id, "edit");
     const result = await axios.put(url, formData, {
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const editProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "/products/deleteProduct",
   async (id) => {
-    const url = getAdminProductApi(id);
+    const url = getAdminProductApi(id, "delete");
     const result = await axios.delete(url);
 
     return result?.data;

@@ -1,4 +1,4 @@
-import { getShopProductApi } from "@/config/api/shop";
+import { getShopProductApi } from "@/config/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
