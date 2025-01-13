@@ -59,7 +59,7 @@ const addProduct = async (req, res) => {
         } = req.body;
 
         // Xây dựng sản phẩm mới bằng ProductBuilder
-        const newProduct = new ProductBuilder()
+        const newProductData = new ProductBuilder()
             .setImage(image)
             .setTitle(title)
             .setDescription(description)
@@ -72,11 +72,12 @@ const addProduct = async (req, res) => {
             .build();
 
         // Tạo và lưu sản phẩm mới
+        const newProduct = new Product(newProductData);
         await newProduct.save();
 
         res.status(201).json({
             success: true,
-            data: newlyCreatedProduct,
+            data: newProductData,
         });
     } catch (e) {
         console.error(e);

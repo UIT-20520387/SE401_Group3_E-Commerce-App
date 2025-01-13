@@ -81,3 +81,13 @@ services:
         paths:
           - /api/common/feature
         strip_path: true
+
+plugins:
+  - name: cors
+    enabled: true
+    config:
+      origins: ["http://localhost:5173"]
+      headers: ["Content-Type", "Authorization", "Cache"]
+      credentials: true
+      max_age: 3600
+      preflight_continue: false
