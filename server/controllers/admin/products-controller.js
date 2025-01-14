@@ -1,9 +1,13 @@
 const S3Adapter = require("../../helpers/adapter/s3");
+const cloudinary = require("cloudinary").v2;
 const CloudinaryAdapter = require("../../helpers/adapter/cloudinary");
 const { Product, ProductBuilder } = require("../../models/Product");
 const UploadStrategy = require("../../helpers/strategy/upload-strategy");
+const { get } = require("mongoose");
 
 const uploadStrategy = new UploadStrategy();
+const s3Adapter = new S3Adapter();
+const cloudinaryAdapter = new CloudinaryAdapter();
 
 const handleImageUpload = async (req, res) => {
     try {
@@ -14,12 +18,12 @@ const handleImageUpload = async (req, res) => {
             });
         }
 
-        const adapterType = req.query.adapter || (Math.random() < 0.5 ? "s3" : "cloudinary");
+        const adapterType = cloudinaryAdapter.isUsageWithinLimits() ? "cloudinary" : "s3";
 
         if (adapterType === "s3") {
-            uploadStrategy.setAdapter(new S3Adapter());
+            uploadStrategy.setAdapter(s3Adapter);
         } else if (adapterType === "cloudinary") {
-            uploadStrategy.setAdapter(new CloudinaryAdapter());
+            uploadStrategy.setAdapter(cloudinaryAdapter);
         } else {
             throw new Error("Unsupported adapter type");
         }

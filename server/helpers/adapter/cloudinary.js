@@ -46,6 +46,24 @@ class CloudinaryAdapter extends UploadAdapter {
       throw new Error(`Cloudinary upload failed: ${error.message}`);
     }
   }
+
+  async isUsageWithinLimits() {
+    try {
+        // Check Cloudinary usage
+        const usage = await this.cloudinary.api.usage();
+        const bandwidth = await this.cloudinary.api.usage({ date: "today" });
+
+        // Check if within free tier limits
+        const isWithinLimits =
+            usage.storage.usage_in_bytes <= 25 * 1024 * 1024 * 1024 && // 25GB Storage
+            usage.transformations.usage <= 25000 && // 25k Transformations
+            bandwidth.bandwidth.usage_in_bytes <= 25 * 1024 * 1024 * 1024; // 25GB Bandwidth
+        return isWithinLimits;
+    } catch (error) {
+        console.error("Error checking Cloudinary usage:", error);
+        return false;
+    }
+}
 }
 
 module.exports = CloudinaryAdapter;
