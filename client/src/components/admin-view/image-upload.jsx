@@ -1,29 +1,32 @@
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
-import { useRef } from "react";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { useEffect, useRef } from "react";
+import { Button } from "../ui/button";
+import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
+import { HOST } from "@/config/api";
 
 function ProductImageUpload({
   imageFile,
   setImageFile,
   imageLoadingState,
+  uploadedImageUrl,
   setUploadedImageUrl,
+  setImageLoadingState,
   isEditMode,
   isCustomStyling = false,
 }) {
   const inputRef = useRef(null);
+
+  console.log(isEditMode, "isEditMode");
 
   function handleImageFileChange(event) {
     console.log(event.target.files, "event.target.files");
     const selectedFile = event.target.files?.[0];
     console.log(selectedFile);
 
-    if (selectedFile) {
-      setImageFile(selectedFile);
-      setUploadedImageUrl(URL.createObjectURL(selectedFile));
-    }
+    if (selectedFile) setImageFile(selectedFile);
   }
 
   function handleDragOver(event) {
@@ -42,6 +45,26 @@ function ProductImageUpload({
       inputRef.current.value = "";
     }
   }
+
+  async function uploadImageToCloudinary() {
+    setImageLoadingState(true);
+    const data = new FormData();
+    data.append("my_file", imageFile);
+    const response = await axios.post(
+      `${HOST}/api/admin/products/upload-image`,
+      data
+    );
+    console.log(response, "response");
+
+    if (response?.data?.success) {
+      setUploadedImageUrl(response.data.result.url);
+      setImageLoadingState(false);
+    }
+  }
+
+  useEffect(() => {
+    if (imageFile !== null) uploadImageToCloudinary();
+  }, [imageFile]);
 
   return (
     <div

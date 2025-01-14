@@ -22,7 +22,7 @@ export const addToCart = createAsyncThunk(
 export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
-    const url = getCartApi(userId, "get");
+    const url = getCartApi(userId, null, "get");
     const response = await axios.get(url);
 
     return response.data;

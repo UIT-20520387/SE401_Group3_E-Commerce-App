@@ -1,7 +1,6 @@
 import AdminLayout from "@/components/admin-view/layout";
 import AuthLayout from "@/components/auth/layout";
 import ShoppingLayout from "@/components/shopping-view/layout";
-import { Skeleton } from "@/components/ui/skeleton";
 import AdminDashboard from "@/pages/admin-view/dashboard";
 import AdminOrders from "@/pages/admin-view/orders";
 import AdminProducts from "@/pages/admin-view/products";
@@ -19,10 +18,12 @@ import UnauthPage from "@/pages/unauth-page";
 import { checkAuth } from "@/store/auth-slice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AuthProtect from "./auth-protected";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function MainRoute() {
+  const pathName = useLocation().pathname;
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
   );
@@ -31,8 +32,12 @@ export default function MainRoute() {
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
-
-  if (isLoading) return <Skeleton className="w-screen h-screen bg-black" />;
+  if (
+    isLoading &&
+    !pathName.includes("login") &&
+    !pathName.includes("register")
+  )
+    return <Skeleton />;
 
   return (
     <Routes>

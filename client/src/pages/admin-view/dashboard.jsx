@@ -1,5 +1,6 @@
 import ProductImageUpload from "@/components/admin-view/image-upload";
 import { Button } from "@/components/ui/button";
+import { HOST } from "@/config/api";
 import { addFeatureImage, getFeatureImages } from "@/store/feature-slice";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -18,7 +19,7 @@ function AdminDashboard() {
     data.append("my_file", imageFile);
 
     const response = await axios.post(
-      "http://localhost:8000/api/admin/products/upload-image",
+      `${HOST}/api/admin/products/upload-image`,
       data
     );
 

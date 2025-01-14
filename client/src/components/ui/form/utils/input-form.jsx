@@ -10,7 +10,6 @@ export default function InputForm({
   const handleChange = (event) => {
     onChange(event.target.value);
   };
-  console.log("Field inside input: ", field);
   return (
     <div className={cn("grid w-full gap-1.5", className)} key={field.name}>
       <label className="mb-1">{field.label}</label>

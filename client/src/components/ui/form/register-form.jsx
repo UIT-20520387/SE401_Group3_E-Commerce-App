@@ -2,8 +2,14 @@ import { registerFormControls } from "@/config/form-control";
 import { Link } from "react-router-dom";
 import { Button } from "../button";
 import FormFactory from "./utils/form-factory";
+import { HashLoader } from "react-spinners";
 
-export default function RegisterForm({ formData, onFormChange, onSubmit }) {
+export default function RegisterForm({
+  isLoading,
+  formData,
+  onFormChange,
+  onSubmit,
+}) {
   const handleInputChange = (name) => (value) => {
     onFormChange({ ...formData, [name]: value });
   };
@@ -20,7 +26,7 @@ export default function RegisterForm({ formData, onFormChange, onSubmit }) {
         ))}
       </div>
       <Button type="submit" className="mt-2 w-full">
-        Register
+        {isLoading ? <HashLoader color="white" size={12} /> : "Register"}
       </Button>
       <p className="mt-2">
         Already have an account
