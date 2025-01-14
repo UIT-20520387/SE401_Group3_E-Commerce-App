@@ -27,6 +27,7 @@ function AdminDashboard() {
   }
 
   function handleUploadFeatureImage() {
+    console.error(uploadedImageUrl)
     dispatch(addFeatureImage(uploadedImageUrl)).then((data) => {
       if (data?.payload?.success) {
         dispatch(getFeatureImages());

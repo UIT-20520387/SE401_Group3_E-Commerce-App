@@ -87,7 +87,7 @@ plugins:
     enabled: true
     config:
       origins: ["http://localhost:5173"]
-      headers: ["Content-Type", "Authorization", "Cache"]
+      headers: ["Content-Type", "Authorization", "Cache", "Cache-Control"]
       credentials: true
       max_age: 3600
       preflight_continue: false
